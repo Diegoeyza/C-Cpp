@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdio.h>
 
-int id(piece){
+int id(piece){  //funcion para asignarle un valor a la letra que entrega el usuario
     int num;
     if (piece=='a'||piece=='A'){
         num=0;
@@ -87,47 +87,49 @@ int main(){
 int Pieces[12][8]={{1,1,0,0,1,2,0,0},{2,2,3,3,1,2,1,2},{4,4,0,0,1,2,0,0},{1,0,0,0,3,0,0,0},{2,3,0,0,3,3,0,0},{4,0,0,0,3,0,0,0},{1,1,0,0,4,5,0,0},{2,0,0,0,4,0,0,0},{3,0,0,0,4,0,0,0},{4,4,0,0,4,5,0,0},{2,0,0,0,5,0,0,0},{3,0,0,0,5,0,0,0}}; //primeras 4 coordenadas de cada sublista es la posición en x de cada letra y las otras 4 la posición en y
 Tablero(Pieces);
 
+int win=0;
 int exit=0;
 char piece, direction;
 int ammount;
-while ((Pieces[1][0]!=2 && Pieces[1][1]!=2 && Pieces[1][2]!=3 && Pieces[1][3]!=3 && Pieces[1][4]!=4 && Pieces[1][5]!=4 && Pieces[1][6]!=5 && Pieces[1][7]!=5) || exit!=1){
+while (win!=1 && exit!=1){
     printf("Escriba la pieza que desea mover (a,b,c,d,e,f,g,h,i,j), la dirección (n,s,e,w) y la cantidad de movimientos (1 o 2). Si desea terminar escriba 0 como movimiento: ");
     scanf("%c%c%d%*c", &piece, &direction, &ammount);  //use el %*c para guardar como un input la tecla enter pero sin almacenarla en ni una parte (si no lo usaba el scanf se saltaba un ciclo)
+    int npiece=id(piece);
     if (ammount==0){
         exit=1;
+        printf("Game Over :D");
 
     }
-    else if ((ammount==1 || ammount==2)&&(piece=='a'||piece=='A'||piece=='b'||piece=='B'||piece=='c'||piece=='C'||piece=='d'||piece=='D'||piece=='e'||piece=='E'||piece=='f'||piece=='F'||piece=='g'||piece=='G'||piece=='h'||piece=='H'||piece=='i'||piece=='I'||piece=='j'||piece=='J')&&(direction=='n'||direction=='N'||direction=='s'||direction=='S'||direction=='e'||direction=='E'||direction=='w'||direction=='W')){
+    else if ((ammount==1 || ammount==2)&&(npiece==0||npiece==1||npiece==2||npiece==3||npiece==4||npiece==5||npiece==6||npiece==7||npiece==8||npiece==9)&&(direction=='n'||direction=='N'||direction=='s'||direction=='S'||direction=='e'||direction=='E'||direction=='w'||direction=='W')){
         int bank=0;
-        int pieza=id(piece);
-        if (pieza==3||pieza==5||pieza==7||pieza==8){
+        if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las piezas de 1x1
             if (direction=='n'||direction=='N'){
                 if (ammount==1){
-                    if (Pieces[10][4]==Pieces[pieza][4]-1&&Pieces[pieza][4]-1!=0){
-                        Pieces [10][4]=bank;
-                        Pieces[10][4]=Pieces[pieza][4];
-                        Pieces[pieza][4]=bank;
+                    if (Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[10][0]==Pieces[npiece][0]&&Pieces[npiece][4]-1!=0){
+                        bank=Pieces[10][4];
+                        Pieces[10][4]=Pieces[npiece][4];
+                        Pieces[npiece][4]=bank;
                     }
-                    else if (Pieces[11][4]==Pieces[pieza][4]-1&&Pieces[pieza][4]-1!=0){
-                        Pieces [11][4]=bank;
-                        Pieces[11][4]=Pieces[pieza][4];
-                        Pieces[pieza][4]=bank;
+                    else if (Pieces[11][4]==Pieces[npiece][4]-1&&Pieces[11][0]==Pieces[npiece][0]&&Pieces[npiece][4]-1!=0){
+                        bank=Pieces[11][4];
+                        Pieces[11][4]=Pieces[npiece][4];
+                        Pieces[npiece][4]=bank;
                     }
                     else{
                         printf("Movimiento no válido");
                     }
                 }
                 else if (ammount==2){
-                    if ((Pieces[10][4]==Pieces[pieza][4]-1&&Pieces[pieza][4]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[pieza][4]-1&&Pieces[pieza][4]-2==Pieces[10][4])&&Pieces[pieza][4]+2>0)
+                    if ((Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[10][4])&&Pieces[npiece][4]+2>0)
                         if (Pieces[10][4]>Pieces[11][4]){
-                            Pieces [11][4]=bank;
-                            Pieces[11][4]=Pieces[pieza][4];
-                            Pieces[pieza][4]=bank;
+                            bank=Pieces[11][4];
+                            Pieces[11][4]=Pieces[npiece][4];
+                            Pieces[npiece][4]=bank;
                         }
                         else if (Pieces[10][4]<Pieces[11][4]){
-                            Pieces [10][4]=bank;
-                            Pieces[10][4]=Pieces[pieza][4];
-                            Pieces[pieza][4]=bank;
+                            bank=Pieces[10][4];
+                            Pieces[10][4]=Pieces[npiece][4];
+                            Pieces[npiece][4]=bank;
                         }
                         else{
                             printf("Error");
@@ -137,6 +139,37 @@ while ((Pieces[1][0]!=2 && Pieces[1][1]!=2 && Pieces[1][2]!=3 && Pieces[1][3]!=3
 
 
             else if (direction=='s'||direction=='S'){
+                if (ammount==1){
+                    if (Pieces[10][4]==Pieces[npiece][4]+1&&Pieces[10][0]==Pieces[npiece][0]&&Pieces[npiece][4]+1!=6){
+                        bank=Pieces[10][4];
+                        Pieces[10][4]=Pieces[npiece][4];
+                        Pieces[npiece][4]=bank;
+                    }
+                    else if (Pieces[11][4]==Pieces[npiece][4]+1&&Pieces[11][0]==Pieces[npiece][0]&&Pieces[npiece][4]+1!=6){
+                        bank=Pieces[11][4];
+                        Pieces[11][4]=Pieces[npiece][4];
+                        Pieces[npiece][4]=bank;
+                    }
+                    else{
+                        printf("Movimiento no válido");
+                    }
+                }
+                else if (ammount==2){
+                    if ((Pieces[10][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[10][4])&&Pieces[npiece][4]+2<6)
+                        if (Pieces[10][4]<Pieces[11][4]){
+                            bank=Pieces[11][4];
+                            Pieces[11][4]=Pieces[npiece][4];
+                            Pieces[npiece][4]=bank;
+                        }
+                        else if (Pieces[10][4]>Pieces[11][4]){
+                            bank=Pieces[10][4];
+                            Pieces[10][4]=Pieces[npiece][4];
+                            Pieces[npiece][4]=bank;
+                        }
+                        else{
+                            printf("Error");
+                        }
+                }
             }
             else if (direction=='e'||direction=='E'){
             }
@@ -150,6 +183,16 @@ while ((Pieces[1][0]!=2 && Pieces[1][1]!=2 && Pieces[1][2]!=3 && Pieces[1][3]!=3
     else{
         printf("\nInstrucción incorrecta \n");
 
+    }
+    if (exit!=1){
+        printf("\n");
+        Tablero(Pieces);  //printeo el tablero luego de cada turno
+        printf("\n");
+    }
+    
+    if (Pieces[1][1]==2 && Pieces[1][3]==3 && Pieces[1][5]==5 && Pieces[1][7]==5){
+        win=1;
+        printf("You Win!! :D");
     }
 }
 
