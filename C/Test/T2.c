@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdio.h>
 
-int id(piece){  //funcion para asignarle un valor a la letra que entrega el usuario
+int id(int piece){  //funcion para asignarle un valor a la letra que entrega el usuario
     int num;
     if (piece=='a'||piece=='A'){
         num=0;
