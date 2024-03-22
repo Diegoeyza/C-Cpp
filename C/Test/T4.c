@@ -1,50 +1,38 @@
 #include <stdio.h>
 
 int id(int piece){  //funcion para asignarle un valor a la letra que entrega el usuario
-    int num;
     if (piece=='a'||piece=='A'){
-        num=0;
-        return num;
+        return 0;
     }
         else if (piece=='b'||piece=='B'){
-        num=1;
-        return num;
+        return 1;
     }
         else if (piece=='c'||piece=='C'){
-        num=2;
-        return num;
+        return 2;
     }
         else if (piece=='d'||piece=='D'){
-        num=3;
-        return num;
+        return 3;
     }
         else if (piece=='e'||piece=='E'){
-        num=4;
-        return num;
+        return 4;
     }
         else if (piece=='f'||piece=='F'){
-        num=5;
-        return num;
+        return 5;
     }
         else if (piece=='g'||piece=='G'){
-        num=6;
-        return num;
+        return 6;
     }
         else if (piece=='h'||piece=='H'){
-        num=7;
-        return num;
+        return 7;
     }
         else if (piece=='i'||piece=='I'){
-        num=8;
-        return num;
+        return 8;
     }
         else if (piece=='j'||piece=='J'){
-        num=9;
-        return num;
+        return 9;
     }
     else{       //en el caso de que la letra ingresada no sea una registrada
-      num=100;
-      return num;
+      return 100;
     }
 }
 
