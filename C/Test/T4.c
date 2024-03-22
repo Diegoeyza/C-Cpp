@@ -281,17 +281,16 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                 else if (ammount=='2'){
                     if ((Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[10][4])){
                         if (Pieces[10][4]>Pieces[11][4]){
-                            bank=Pieces[11][4];
-                            Pieces[11][4]=Pieces[npiece][4];
-                            Pieces[npiece][4]=bank;
+                            Pieces[11][4]+=2;
+                            Pieces[10][4]+=3;
+                            Pieces[npiece][4]-=2;
+                            Pieces[npiece][5]-=2;
                         }
                         else if (Pieces[10][4]<Pieces[11][4]){
-                            bank=Pieces[10][4];
-                            Pieces[10][4]=Pieces[npiece][4];
-                            Pieces[npiece][4]=bank;
-                        }
-                        else{
-                            printf("Error");
+                            Pieces[11][4]+=3;
+                            Pieces[10][4]+=2;
+                            Pieces[npiece][4]-=2;
+                            Pieces[npiece][5]-=2;
                         }
                     }
                     else{
@@ -320,17 +319,16 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                 else if (ammount=='2'){
                     if ((Pieces[10][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[10][4])){
                         if (Pieces[10][4]<Pieces[11][4]){
-                            bank=Pieces[11][4];
-                            Pieces[11][4]=Pieces[npiece][4];
-                            Pieces[npiece][4]=bank;
+                            Pieces[11][4]-=2;
+                            Pieces[10][4]-=3;
+                            Pieces[npiece][4]+=2;
+                            Pieces[npiece][5]+=2;
                         }
                         else if (Pieces[10][4]>Pieces[11][4]){
-                            bank=Pieces[10][4];
-                            Pieces[10][4]=Pieces[npiece][4];
-                            Pieces[npiece][4]=bank;
-                        }
-                        else{
-                            printf("Error");
+                            Pieces[11][4]-=3;
+                            Pieces[10][4]-=2;
+                            Pieces[npiece][4]+=2;
+                            Pieces[npiece][5]+=2;
                         }
                     }
                     else{
