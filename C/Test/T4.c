@@ -92,8 +92,6 @@ Tablero(Pieces);
 
 int win=0;
 int exit=0;
-char piece, direction;
-char ammount;
 char input[20];
 while (win!=1 && exit!=1){
     printf("Escriba la pieza que desea mover (a,b,c,d,e,f,g,h,i,j), la dirección (n,s,e,w) y la cantidad de movimientos (1 o 2) (dejarlo en blanco implica 1). Si desea terminar ingrese 0: ");
