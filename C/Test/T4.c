@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int id(int piece){  //funcion para asignarle un valor a la letra que entrega el usuario
+int id(int piece){  //funcion para asignarle un valor a la letra que entrega el usuario, lo podrìa hacer usando el valor de la tabla del carácter y restarle A, pero esto fallaría si ingreso minúsculas
     if (piece=='a'||piece=='A'){
         return 0;
     }
@@ -265,15 +265,15 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                     }
                 }
                 else if (ammount=='2'){
-                    if ((Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[10][4])){
+                    if ((Pieces[10][4]==Pieces[npiece][4]-2&&Pieces[npiece][5]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-2&&Pieces[npiece][5]-2==Pieces[10][4])){
                         if (Pieces[10][4]>Pieces[11][4]){
                             Pieces[11][4]+=2;
-                            Pieces[10][4]+=3;
+                            Pieces[10][4]+=2;
                             Pieces[npiece][4]-=2;
                             Pieces[npiece][5]-=2;
                         }
                         else if (Pieces[10][4]<Pieces[11][4]){
-                            Pieces[11][4]+=3;
+                            Pieces[11][4]+=2;
                             Pieces[10][4]+=2;
                             Pieces[npiece][4]-=2;
                             Pieces[npiece][5]-=2;
@@ -303,15 +303,15 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                     }
                 }
                 else if (ammount=='2'){
-                    if ((Pieces[10][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[10][4])){
+                    if ((Pieces[10][4]==Pieces[npiece][4]+2 && Pieces[11][4]==Pieces[npiece][5]+2)||(Pieces[11][4]==Pieces[npiece][4]+2 && Pieces[10][4]==Pieces[npiece][5]+2)){
                         if (Pieces[10][4]<Pieces[11][4]){
                             Pieces[11][4]-=2;
-                            Pieces[10][4]-=3;
+                            Pieces[10][4]-=2;
                             Pieces[npiece][4]+=2;
                             Pieces[npiece][5]+=2;
                         }
                         else if (Pieces[10][4]>Pieces[11][4]){
-                            Pieces[11][4]-=3;
+                            Pieces[11][4]-=2;
                             Pieces[10][4]-=2;
                             Pieces[npiece][4]+=2;
                             Pieces[npiece][5]+=2;
@@ -324,52 +324,25 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
             }
             else if (direction=='e'||direction=='E'){
                 if (ammount=='1' || ammount=='\0'){
-                    if (Pieces[10][0]==Pieces[npiece][0]+1&&Pieces[10][4]==Pieces[npiece][4]){
-                        bank=Pieces[10][0];
-                        Pieces[10][0]=Pieces[npiece][0];
-                        Pieces[npiece][0]=bank;
-                    }
-                    else if (Pieces[11][0]==Pieces[npiece][0]+1&&Pieces[11][4]==Pieces[npiece][4]){
-                        bank=Pieces[11][0];
-                        Pieces[11][0]=Pieces[npiece][0];
-                        Pieces[npiece][0]=bank;
+                    if (((Pieces[10][0]==Pieces[npiece][0]+1&&Pieces[11][0]==Pieces[npiece][1]+1)||(Pieces[10][0]==Pieces[npiece][1]+1&&Pieces[11][0]==Pieces[npiece][0]+1))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[11][4]==Pieces[npiece][5])||(Pieces[10][4]==Pieces[npiece][5]&&Pieces[11][4]==Pieces[npiece][4]))){
+                        Pieces[10][0]--;
+                        Pieces[11][0]--;
+                        Pieces[npiece][0]++;
+                        Pieces[npiece][1]++;
                     }
                     else{
                         printf("\nMovimiento no válido\n");
                     }
-                }
-                else if (ammount=='2'){
-                    if ((Pieces[10][0]==Pieces[npiece][0]+1&&Pieces[npiece][0]+2==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]+1&&Pieces[npiece][0]+2==Pieces[10][0])){
-                        if (Pieces[10][0]<Pieces[11][0]){
-                            bank=Pieces[11][0];
-                            Pieces[11][0]=Pieces[npiece][0];
-                            Pieces[npiece][0]=bank;
-                        }
-                        else if (Pieces[10][0]>Pieces[11][0]){
-                            bank=Pieces[10][0];
-                            Pieces[10][0]=Pieces[npiece][0];
-                            Pieces[npiece][0]=bank;
-                        }
-                        else{
-                            printf("Error");
-                        }
-                    }
-                    else{
-                        printf("\nMovimiento no válido\n");
-                    }
+
                 }
             }
             else if (direction=='w'||direction=='W'){
                 if (ammount=='1' || ammount=='\0'){
-                    if (Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[10][4]==Pieces[npiece][4]){
-                        bank=Pieces[10][0];
-                        Pieces[10][0]=Pieces[npiece][0];
-                        Pieces[npiece][0]=bank;
-                    }
-                    else if (Pieces[11][0]==Pieces[npiece][0]-1&&Pieces[11][4]==Pieces[npiece][4]){
-                        bank=Pieces[11][0];
-                        Pieces[11][0]=Pieces[npiece][0];
-                        Pieces[npiece][0]=bank;
+                    if (((Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[11][0]==Pieces[npiece][1]-1)||(Pieces[10][0]==Pieces[npiece][1]-1&&Pieces[11][0]==Pieces[npiece][0]-1))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[11][4]==Pieces[npiece][5])||(Pieces[10][4]==Pieces[npiece][5]&&Pieces[11][4]==Pieces[npiece][4]))){
+                        Pieces[10][0]++;
+                        Pieces[11][0]++;
+                        Pieces[npiece][0]--;
+                        Pieces[npiece][1]--;
                     }
                     else{
                         printf("\nMovimiento no válido\n");
