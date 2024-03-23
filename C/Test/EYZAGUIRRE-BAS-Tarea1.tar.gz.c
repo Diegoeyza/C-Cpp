@@ -36,7 +36,7 @@ int id(int piece){  //funcion para asignarle un valor a la letra que entrega el 
     }
 }
 
-void Tablero(int Pieces[11][8]){
+void Tablero(int Pieces[11][8]){  //Función a llamar para crear el tablero
     char letters[]={"ABCDEFGHIJ  "};
     int grid[5][4]={{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
     for (int l=0;l<12;l++){
@@ -76,8 +76,8 @@ int main(){
 int Pieces[12][8]={{1,1,0,0,1,2,0,0},{2,2,3,3,1,2,1,2},{4,4,0,0,1,2,0,0},{1,0,0,0,3,0,0,0},{2,3,0,0,3,3,0,0},{4,0,0,0,3,0,0,0},{1,1,0,0,4,5,0,0},{2,0,0,0,4,0,0,0},{3,0,0,0,4,0,0,0},{4,4,0,0,4,5,0,0},{2,0,0,0,5,0,0,0},{3,0,0,0,5,0,0,0}}; //primeras 4 coordenadas de cada sublista es la posición en x de cada letra y las otras 4 la posición en y
 Tablero(Pieces);
 
-int win=0;
-int exit=0;
+int win=0;  //condición de éxito
+int exit=0; //condición de salida
 char input[20];
 while (win!=1 && exit!=1){
     printf("Escriba la pieza que desea mover, la dirección (N,S,E,W) y la cantidad de movimientos (1 o 2) (en blanco implica 1). Si desea terminar ingrese 0: ");
@@ -510,7 +510,7 @@ while (win!=1 && exit!=1){
         Tablero(Pieces);  //printeo el tablero luego de cada turno
         printf("\n");
     }
-    if (Pieces[1][1]==2 && Pieces[1][3]==3 && Pieces[1][5]==5 && Pieces[1][7]==5){
+    if (Pieces[1][1]==2 && Pieces[1][3]==3 && Pieces[1][5]==5 && Pieces[1][7]==5){  //Reviso si esque el bloque B está en la posición final
         win=1;
         printf("You Win!! :D\n");
     }
