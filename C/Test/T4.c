@@ -323,7 +323,7 @@ while (win!=1 && exit!=1){
                 }
             }
         }
-        else if (npiece==4){  //el script para mover la piezas de 1x2
+        else if (npiece==4){  //el script para mover la pieza de 1x2
             if (direction=='n'||direction=='N'){
                 if (ammount=='1' || ammount=='\0'){
                     if (((Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[11][4]==Pieces[npiece][5]-1)||(Pieces[10][4]==Pieces[npiece][5]-1&&Pieces[11][4]==Pieces[npiece][4]-1))&&((Pieces[10][0]==Pieces[npiece][0]&&Pieces[11][0]==Pieces[npiece][1])||(Pieces[10][0]==Pieces[npiece][1]&&Pieces[11][0]==Pieces[npiece][0]))){
@@ -430,6 +430,117 @@ while (win!=1 && exit!=1){
             }
         }    
 
+
+        else if (npiece==1){  //el script para mover la pieza de 2x2
+            if (direction=='n'||direction=='N'){
+                if (ammount=='1' || ammount=='\0'){
+                    if (((Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[11][4]==Pieces[npiece][4]-1)||(Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[11][4]==Pieces[npiece][4]-1))&&((Pieces[10][0]==Pieces[npiece][0]&&Pieces[11][0]==Pieces[npiece][2])||(Pieces[10][0]==Pieces[npiece][2]&&Pieces[11][0]==Pieces[npiece][0]))){
+                        Pieces[10][4]+=2;
+                        Pieces[11][4]+=2;
+                        Pieces[npiece][4]--;
+                        Pieces[npiece][5]--;
+                        Pieces[npiece][6]--;
+                        Pieces[npiece][7]--;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+                else{
+                    printf("\nMovimiento no válido\n");
+                }
+            }
+            else if (direction=='s'||direction=='S'){
+                if (ammount=='1' || ammount=='\0'){
+                    if (((Pieces[10][4]==Pieces[npiece][5]+1&&Pieces[11][4]==Pieces[npiece][5]+1)||(Pieces[10][4]==Pieces[npiece][5]+1&&Pieces[11][4]==Pieces[npiece][5]+1))&&((Pieces[10][0]==Pieces[npiece][0]&&Pieces[11][0]==Pieces[npiece][2])||(Pieces[10][0]==Pieces[npiece][2]&&Pieces[11][0]==Pieces[npiece][0]))){
+                        Pieces[10][4]-=2;
+                        Pieces[11][4]-=2;
+                        Pieces[npiece][4]++;
+                        Pieces[npiece][5]++;
+                        Pieces[npiece][6]++;
+                        Pieces[npiece][7]++;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+                else{
+                    printf("\nMovimiento no válido\n");
+                }
+            }
+            else if (direction=='e'||direction=='E'){
+                if (ammount=='1' || ammount=='\0'){
+                    if (Pieces[10][0]==Pieces[npiece][1]+1&&Pieces[10][4]==Pieces[npiece][4]){
+                        Pieces[10][0]-=2;
+                        Pieces[npiece][0]++;
+                        Pieces[npiece][1]++;
+                    }
+                    else if (Pieces[11][0]==Pieces[npiece][1]+1&&Pieces[11][4]==Pieces[npiece][4]){
+                        Pieces[11][0]-=2;
+                        Pieces[npiece][0]++;
+                        Pieces[npiece][1]++;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+                else if (ammount=='2'){
+                    if ((Pieces[10][0]==Pieces[npiece][0]+2 && Pieces[11][0]==Pieces[npiece][1]+2)||(Pieces[11][0]==Pieces[npiece][0]+2 && Pieces[10][0]==Pieces[npiece][1]+2)){
+                        if (Pieces[10][0]<Pieces[11][0]){                            
+                            Pieces[11][0]-=2;
+                            Pieces[10][0]-=2;
+                            Pieces[npiece][0]+=2;
+                            Pieces[npiece][1]+=2;
+                        }
+                        else if (Pieces[10][0]>Pieces[11][0]){
+                            Pieces[11][0]-=2;
+                            Pieces[10][0]-=2;
+                            Pieces[npiece][0]+=2;
+                            Pieces[npiece][1]+=2;
+                        }
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+            }
+            else if (direction=='w'||direction=='W'){
+                if (ammount=='1' || ammount=='\0'){
+                    if (Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[10][4]==Pieces[npiece][4]){
+                        Pieces[10][0]+=2;
+                        Pieces[npiece][0]--;
+                        Pieces[npiece][1]--;
+                    }
+                    else if (Pieces[11][0]==Pieces[npiece][0]-1&&Pieces[11][4]==Pieces[npiece][4]){
+                        Pieces[11][0]+=2;
+                        Pieces[npiece][0]--;
+                        Pieces[npiece][1]--;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+                else if (ammount=='2'){
+                    if ((Pieces[10][0]==Pieces[npiece][0]-2 && Pieces[11][0]==Pieces[npiece][1]-2)||(Pieces[11][0]==Pieces[npiece][0]-2 && Pieces[10][0]==Pieces[npiece][1]-2)){
+                        if (Pieces[10][0]<Pieces[11][0]){                            
+                            Pieces[11][0]+=2;
+                            Pieces[10][0]+=2;
+                            Pieces[npiece][0]-=2;
+                            Pieces[npiece][1]-=2;
+                        }
+                        else if (Pieces[10][0]>Pieces[11][0]){
+                            Pieces[11][0]+=2;
+                            Pieces[10][0]+=2;
+                            Pieces[npiece][0]-=2;
+                            Pieces[npiece][1]-=2;
+                        }
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+            }
+        }  
 
 }
     else{
