@@ -94,7 +94,6 @@ while (win!=1 && exit!=1){
 
     }
     else if ((ammount=='1' || ammount=='2' || ammount=='\0')&&(npiece==0||npiece==1||npiece==2||npiece==3||npiece==4||npiece==5||npiece==6||npiece==7||npiece==8||npiece==9)&&(direction=='n'||direction=='N'||direction=='s'||direction=='S'||direction=='e'||direction=='E'||direction=='w'||direction=='W')){
-        int bank=0;
         if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las piezas de 1x1
             if (direction=='n'||direction=='N'){
                 if (ammount=='1' || ammount=='\0'){
@@ -323,8 +322,6 @@ while (win!=1 && exit!=1){
                 }
             }
         }
-
-
         else if (npiece==4){  //el script para mover la piezas de 1x2
             if (direction=='n'||direction=='N'){
                 if (ammount=='1' || ammount=='\0'){
