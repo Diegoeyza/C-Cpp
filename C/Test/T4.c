@@ -95,18 +95,16 @@ while (win!=1 && exit!=1){
     }
     else if ((ammount=='1' || ammount=='2' || ammount=='\0')&&(npiece==0||npiece==1||npiece==2||npiece==3||npiece==4||npiece==5||npiece==6||npiece==7||npiece==8||npiece==9)&&(direction=='n'||direction=='N'||direction=='s'||direction=='S'||direction=='e'||direction=='E'||direction=='w'||direction=='W')){
         int bank=0;
-if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las piezas de 1x1
+        if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las piezas de 1x1
             if (direction=='n'||direction=='N'){
                 if (ammount=='1' || ammount=='\0'){
                     if (Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[10][0]==Pieces[npiece][0]){
-                        bank=Pieces[10][4];
-                        Pieces[10][4]=Pieces[npiece][4];
-                        Pieces[npiece][4]=bank;
+                    Pieces[10][4]++;
+                    Pieces[npiece][4]--;
                     }
                     else if (Pieces[11][4]==Pieces[npiece][4]-1&&Pieces[11][0]==Pieces[npiece][0]){
-                        bank=Pieces[11][4];
-                        Pieces[11][4]=Pieces[npiece][4];
-                        Pieces[npiece][4]=bank;
+                        Pieces[11][4]++;
+                        Pieces[npiece][4]--;
                     }
                     else{
                         printf("\n\nMovimiento no válido\n\n");
@@ -115,14 +113,13 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                 else if (ammount=='2'){
                     if ((Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[10][4])){
                         if (Pieces[10][4]>Pieces[11][4]){
-                            bank=Pieces[11][4];
-                            Pieces[11][4]=Pieces[npiece][4];
-                            Pieces[npiece][4]=bank;
+                            Pieces[11][4]+=2;
+                            Pieces[npiece][4]-=2;
                         }
                         else if (Pieces[10][4]<Pieces[11][4]){
-                            bank=Pieces[10][4];
-                            Pieces[10][4]=Pieces[npiece][4];
-                            Pieces[npiece][4]=bank;
+
+                            Pieces[10][4]+=2;
+                            Pieces[npiece][4]-=2;
                         }
                     }
                     else{
@@ -130,19 +127,15 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                     }
                 }
             }
-
-
             else if (direction=='s'||direction=='S'){
                 if (ammount=='1' || ammount=='\0'){
                     if (Pieces[10][4]==Pieces[npiece][4]+1&&Pieces[10][0]==Pieces[npiece][0]){
-                        bank=Pieces[10][4];
-                        Pieces[10][4]=Pieces[npiece][4];
-                        Pieces[npiece][4]=bank;
+                        Pieces[10][4]--;
+                        Pieces[npiece][4]++;
                     }
                     else if (Pieces[11][4]==Pieces[npiece][4]+1&&Pieces[11][0]==Pieces[npiece][0]){
-                        bank=Pieces[11][4];
-                        Pieces[11][4]=Pieces[npiece][4];
-                        Pieces[npiece][4]=bank;
+                        Pieces[11][4]--;
+                        Pieces[npiece][4]++;
                     }
                     else{
                         printf("\nMovimiento no válido\n");
@@ -151,14 +144,12 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                 else if (ammount=='2'){
                     if ((Pieces[10][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[10][4])){
                         if (Pieces[10][4]<Pieces[11][4]){
-                            bank=Pieces[11][4];
-                            Pieces[11][4]=Pieces[npiece][4];
-                            Pieces[npiece][4]=bank;
+                            Pieces[11][4]-=2;
+                            Pieces[npiece][4]+=2;
                         }
                         else if (Pieces[10][4]>Pieces[11][4]){
-                            bank=Pieces[10][4];
-                            Pieces[10][4]=Pieces[npiece][4];
-                            Pieces[npiece][4]=bank;
+                            Pieces[10][4]-=2;
+                            Pieces[npiece][4]+=2;
                         }
                     }
                     else{
@@ -169,14 +160,12 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
             else if (direction=='e'||direction=='E'){
                 if (ammount=='1' || ammount=='\0'){
                     if (Pieces[10][0]==Pieces[npiece][0]+1&&Pieces[10][4]==Pieces[npiece][4]){
-                        bank=Pieces[10][0];
-                        Pieces[10][0]=Pieces[npiece][0];
-                        Pieces[npiece][0]=bank;
+                        Pieces[10][0]--;
+                        Pieces[npiece][0]++;
                     }
                     else if (Pieces[11][0]==Pieces[npiece][0]+1&&Pieces[11][4]==Pieces[npiece][4]){
-                        bank=Pieces[11][0];
-                        Pieces[11][0]=Pieces[npiece][0];
-                        Pieces[npiece][0]=bank;
+                        Pieces[11][0]--;
+                        Pieces[npiece][0]++;
                     }
                     else{
                         printf("\nMovimiento no válido\n");
@@ -185,14 +174,12 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                 else if (ammount=='2'){
                     if ((Pieces[10][0]==Pieces[npiece][0]+1&&Pieces[npiece][0]+2==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]+1&&Pieces[npiece][0]+2==Pieces[10][0])){
                         if (Pieces[10][0]<Pieces[11][0]){
-                            bank=Pieces[11][0];
-                            Pieces[11][0]=Pieces[npiece][0];
-                            Pieces[npiece][0]=bank;
+                            Pieces[11][0]-=2;
+                            Pieces[npiece][0]+=2;
                         }
                         else if (Pieces[10][0]>Pieces[11][0]){
-                            bank=Pieces[10][0];
-                            Pieces[10][0]=Pieces[npiece][0];
-                            Pieces[npiece][0]=bank;
+                            Pieces[10][0]-=2;
+                            Pieces[npiece][0]+=2;
                         }
                     }
                     else{
@@ -203,14 +190,12 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
             else if (direction=='w'||direction=='W'){
                 if (ammount=='1' || ammount=='\0'){
                     if (Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[10][4]==Pieces[npiece][4]){
-                        bank=Pieces[10][0];
-                        Pieces[10][0]=Pieces[npiece][0];
-                        Pieces[npiece][0]=bank;
+                        Pieces[10][0]++;
+                        Pieces[npiece][0]--;
                     }
                     else if (Pieces[11][0]==Pieces[npiece][0]-1&&Pieces[11][4]==Pieces[npiece][4]){
-                        bank=Pieces[11][0];
-                        Pieces[11][0]=Pieces[npiece][0];
-                        Pieces[npiece][0]=bank;
+                        Pieces[11][0]++;
+                        Pieces[npiece][0]--;
                     }
                     else{
                         printf("\nMovimiento no válido\n");
@@ -219,14 +204,12 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                 else if (ammount=='2'){
                     if ((Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[npiece][0]-2==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]-1&&Pieces[npiece][0]-2==Pieces[10][0])){
                         if (Pieces[10][0]>Pieces[11][0]){
-                            bank=Pieces[11][0];
-                            Pieces[11][0]=Pieces[npiece][0];
-                            Pieces[npiece][0]=bank;
+                            Pieces[11][0]+=2;
+                            Pieces[npiece][0]-=2;
                         }
                         else if (Pieces[10][0]<Pieces[11][0]){
-                            bank=Pieces[10][0];
-                            Pieces[10][0]=Pieces[npiece][0];
-                            Pieces[npiece][0]=bank;
+                            Pieces[10][0]+=2;
+                            Pieces[npiece][0]-=2;
                         }
                     }
                     else{
@@ -234,8 +217,8 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                     }
                 }
             }
-    }
-    if (npiece==0||npiece==2||npiece==6||npiece==9){  //el script para mover las piezas de 2x1
+        }
+        else if (npiece==0||npiece==2||npiece==6||npiece==9){  //el script para mover las piezas de 2x1
             if (direction=='n'||direction=='N'){
                 if (ammount=='1' || ammount=='\0'){
                     if (Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[10][0]==Pieces[npiece][0]){
@@ -251,7 +234,7 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                     else{
                         printf("\n\nMovimiento no válido\n\n");
                     }
-                }
+                }   
                 else if (ammount=='2'){
                     if ((Pieces[10][4]==Pieces[npiece][4]-2&&Pieces[npiece][5]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-2&&Pieces[npiece][5]-2==Pieces[10][4])){
                         if (Pieces[10][4]>Pieces[11][4]){
@@ -272,8 +255,6 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                     }
                 }
             }
-
-
             else if (direction=='s'||direction=='S'){
                 if (ammount=='1' || ammount=='\0'){
                     if (Pieces[10][4]==Pieces[npiece][5]+1&&Pieces[10][0]==Pieces[npiece][0]){
@@ -292,8 +273,7 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                 }
                 else if (ammount=='2'){
                     if ((Pieces[10][4]==Pieces[npiece][4]+2 && Pieces[11][4]==Pieces[npiece][5]+2)||(Pieces[11][4]==Pieces[npiece][4]+2 && Pieces[10][4]==Pieces[npiece][5]+2)){
-                        if (Pieces[10][4]<Pieces[11][4]){
-                            Pieces[11][4]-=2;
+                        if (Pieces[10][4]<Pieces[11][4]){                            Pieces[11][4]-=2;
                             Pieces[10][4]-=2;
                             Pieces[npiece][4]+=2;
                             Pieces[npiece][5]+=2;
@@ -321,7 +301,74 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                     else{
                         printf("\nMovimiento no válido\n");
                     }
+                }
+                else{
+                    printf("\nMovimiento no válido\n");
+                }
+            }
+            else if (direction=='w'||direction=='W'){
+                if (ammount=='1' || ammount=='\0'){
+                    if (((Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[11][0]==Pieces[npiece][1]-1)||(Pieces[10][0]==Pieces[npiece][1]-1&&Pieces[11][0]==Pieces[npiece][0]-1))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[11][4]==Pieces[npiece][5])||(Pieces[10][4]==Pieces[npiece][5]&&Pieces[11][4]==Pieces[npiece][4]))){
+                        Pieces[10][0]++;
+                        Pieces[11][0]++;
+                        Pieces[npiece][0]--;
+                        Pieces[npiece][1]--;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+                else{
+                    printf("\nMovimiento no válido\n");
+                }
+            }
+        }
 
+
+        else if (npiece==4){  //el script para mover la piezas de 1x2
+            if (direction=='n'||direction=='N'){
+                if (ammount=='1' || ammount=='\0'){
+                    if (((Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[11][4]==Pieces[npiece][5]-1)||(Pieces[10][4]==Pieces[npiece][5]-1&&Pieces[11][4]==Pieces[npiece][4]-1))&&((Pieces[10][0]==Pieces[npiece][0]&&Pieces[11][0]==Pieces[npiece][1])||(Pieces[10][0]==Pieces[npiece][1]&&Pieces[11][0]==Pieces[npiece][0]))){
+                        Pieces[10][4]++;
+                        Pieces[11][4]++;
+                        Pieces[npiece][4]--;
+                        Pieces[npiece][5]--;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+                else{
+                    printf("\nMovimiento no válido\n");
+                }
+            }
+            else if (direction=='s'||direction=='S'){
+                if (ammount=='1' || ammount=='\0'){
+                    if (((Pieces[10][4]==Pieces[npiece][4]+1&&Pieces[11][4]==Pieces[npiece][5]+1)||(Pieces[10][4]==Pieces[npiece][5]+1&&Pieces[11][4]==Pieces[npiece][4]+1))&&((Pieces[10][0]==Pieces[npiece][0]&&Pieces[11][0]==Pieces[npiece][1])||(Pieces[10][0]==Pieces[npiece][1]&&Pieces[11][0]==Pieces[npiece][0]))){
+                        Pieces[10][4]--;
+                        Pieces[11][4]--;
+                        Pieces[npiece][4]++;
+                        Pieces[npiece][5]++;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+                else{
+                    printf("\nMovimiento no válido\n");
+                }
+            }
+            else if (direction=='e'||direction=='E'){
+                if (ammount=='1' || ammount=='\0'){
+                    if (((Pieces[10][0]==Pieces[npiece][0]+1&&Pieces[11][0]==Pieces[npiece][1]+1)||(Pieces[10][0]==Pieces[npiece][1]+1&&Pieces[11][0]==Pieces[npiece][0]+1))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[11][4]==Pieces[npiece][5])||(Pieces[10][4]==Pieces[npiece][5]&&Pieces[11][4]==Pieces[npiece][4]))){
+                        Pieces[10][0]--;
+                        Pieces[11][0]--;
+                        Pieces[npiece][0]++;
+                        Pieces[npiece][1]++;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
                 }
             }
             else if (direction=='w'||direction=='W'){
@@ -337,8 +384,7 @@ if (npiece==3||npiece==5||npiece==7||npiece==8){  //el script para mover las pie
                     }
                 }
             }
-    }
-
+        }    
 
 
 }
