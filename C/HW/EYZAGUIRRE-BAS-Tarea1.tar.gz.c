@@ -88,7 +88,7 @@ while (win!=1 && exit!=1){
     int npiece=id(piece);
     if (ammount=='0'||direction=='0'||piece=='0'){
         exit=1;
-        printf("Game Over :D\n");
+        printf("\nGame Over :D\n\n");
 
     }
     else if ((ammount=='1' || ammount=='2' || ammount=='\0')&&(npiece==0||npiece==1||npiece==2||npiece==3||npiece==4||npiece==5||npiece==6||npiece==7||npiece==8||npiece==9)&&(direction=='n'||direction=='N'||direction=='s'||direction=='S'||direction=='e'||direction=='E'||direction=='w'||direction=='W')){
