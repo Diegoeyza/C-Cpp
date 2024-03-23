@@ -82,7 +82,7 @@ int win=0;
 int exit=0;
 char input[20];
 while (win!=1 && exit!=1){
-    printf("Escriba la pieza que desea mover (a,b,c,d,e,f,g,h,i,j), la dirección (n,s,e,w) y la cantidad de movimientos (1 o 2) (dejarlo en blanco implica 1). Si desea terminar ingrese 0: ");
+    printf("Escriba la pieza que desea mover, la dirección (N,S,E,W) y la cantidad de movimientos (1 o 2) (en blanco implica 1). Si desea terminar ingrese 0: ");
     scanf("%s", input);
     char piece=input[0];
     char direction=input[1];
@@ -272,7 +272,8 @@ while (win!=1 && exit!=1){
                 }
                 else if (ammount=='2'){
                     if ((Pieces[10][4]==Pieces[npiece][4]+2 && Pieces[11][4]==Pieces[npiece][5]+2)||(Pieces[11][4]==Pieces[npiece][4]+2 && Pieces[10][4]==Pieces[npiece][5]+2)){
-                        if (Pieces[10][4]<Pieces[11][4]){                            Pieces[11][4]-=2;
+                        if (Pieces[10][4]<Pieces[11][4]){                            
+                            Pieces[11][4]-=2;
                             Pieces[10][4]-=2;
                             Pieces[npiece][4]+=2;
                             Pieces[npiece][5]+=2;
@@ -357,11 +358,34 @@ while (win!=1 && exit!=1){
             }
             else if (direction=='e'||direction=='E'){
                 if (ammount=='1' || ammount=='\0'){
-                    if (((Pieces[10][0]==Pieces[npiece][0]+1&&Pieces[11][0]==Pieces[npiece][1]+1)||(Pieces[10][0]==Pieces[npiece][1]+1&&Pieces[11][0]==Pieces[npiece][0]+1))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[11][4]==Pieces[npiece][5])||(Pieces[10][4]==Pieces[npiece][5]&&Pieces[11][4]==Pieces[npiece][4]))){
-                        Pieces[10][0]--;
-                        Pieces[11][0]--;
+                    if (Pieces[10][0]==Pieces[npiece][1]+1&&Pieces[10][4]==Pieces[npiece][4]){
+                        Pieces[10][0]-=2;
                         Pieces[npiece][0]++;
                         Pieces[npiece][1]++;
+                    }
+                    else if (Pieces[11][0]==Pieces[npiece][1]+1&&Pieces[11][4]==Pieces[npiece][4]){
+                        Pieces[11][0]-=2;
+                        Pieces[npiece][0]++;
+                        Pieces[npiece][1]++;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+                else if (ammount=='2'){
+                    if ((Pieces[10][0]==Pieces[npiece][0]+2 && Pieces[11][0]==Pieces[npiece][1]+2)||(Pieces[11][0]==Pieces[npiece][0]+2 && Pieces[10][0]==Pieces[npiece][1]+2)){
+                        if (Pieces[10][0]<Pieces[11][0]){                            
+                            Pieces[11][0]-=2;
+                            Pieces[10][0]-=2;
+                            Pieces[npiece][0]+=2;
+                            Pieces[npiece][1]+=2;
+                        }
+                        else if (Pieces[10][0]>Pieces[11][0]){
+                            Pieces[11][0]-=2;
+                            Pieces[10][0]-=2;
+                            Pieces[npiece][0]+=2;
+                            Pieces[npiece][1]+=2;
+                        }
                     }
                     else{
                         printf("\nMovimiento no válido\n");
@@ -370,11 +394,34 @@ while (win!=1 && exit!=1){
             }
             else if (direction=='w'||direction=='W'){
                 if (ammount=='1' || ammount=='\0'){
-                    if (((Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[11][0]==Pieces[npiece][1]-1)||(Pieces[10][0]==Pieces[npiece][1]-1&&Pieces[11][0]==Pieces[npiece][0]-1))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[11][4]==Pieces[npiece][5])||(Pieces[10][4]==Pieces[npiece][5]&&Pieces[11][4]==Pieces[npiece][4]))){
-                        Pieces[10][0]++;
-                        Pieces[11][0]++;
+                    if (Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[10][4]==Pieces[npiece][4]){
+                        Pieces[10][0]+=2;
                         Pieces[npiece][0]--;
                         Pieces[npiece][1]--;
+                    }
+                    else if (Pieces[11][0]==Pieces[npiece][0]-1&&Pieces[11][4]==Pieces[npiece][4]){
+                        Pieces[11][0]+=2;
+                        Pieces[npiece][0]--;
+                        Pieces[npiece][1]--;
+                    }
+                    else{
+                        printf("\nMovimiento no válido\n");
+                    }
+                }
+                else if (ammount=='2'){
+                    if ((Pieces[10][0]==Pieces[npiece][0]-2 && Pieces[11][0]==Pieces[npiece][1]-2)||(Pieces[11][0]==Pieces[npiece][0]-2 && Pieces[10][0]==Pieces[npiece][1]-2)){
+                        if (Pieces[10][0]<Pieces[11][0]){                            
+                            Pieces[11][0]+=2;
+                            Pieces[10][0]+=2;
+                            Pieces[npiece][0]-=2;
+                            Pieces[npiece][1]-=2;
+                        }
+                        else if (Pieces[10][0]>Pieces[11][0]){
+                            Pieces[11][0]+=2;
+                            Pieces[10][0]+=2;
+                            Pieces[npiece][0]-=2;
+                            Pieces[npiece][1]-=2;
+                        }
                     }
                     else{
                         printf("\nMovimiento no válido\n");
