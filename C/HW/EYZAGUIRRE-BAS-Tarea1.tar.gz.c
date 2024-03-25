@@ -108,7 +108,7 @@ while (win!=1 && exit!=1){
                     }
                 }
                 else if (ammount=='2'){
-                    if ((Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[10][4])){
+                    if (((Pieces[10][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-1&&Pieces[npiece][4]-2==Pieces[10][4]))&&((Pieces[10][0]==Pieces[npiece][0]&&Pieces[npiece][0]==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]&&Pieces[npiece][0]==Pieces[10][0]))){
                         if (Pieces[10][4]>Pieces[11][4]){
                             Pieces[11][4]+=2;
                             Pieces[npiece][4]-=2;
@@ -139,7 +139,7 @@ while (win!=1 && exit!=1){
                     }
                 }
                 else if (ammount=='2'){
-                    if ((Pieces[10][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[10][4])){
+                    if (((Pieces[10][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]+1&&Pieces[npiece][4]+2==Pieces[10][4]))&&((Pieces[10][0]==Pieces[npiece][0]&&Pieces[npiece][0]==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]&&Pieces[npiece][0]==Pieces[10][0]))){
                         if (Pieces[10][4]<Pieces[11][4]){
                             Pieces[11][4]-=2;
                             Pieces[npiece][4]+=2;
@@ -169,7 +169,7 @@ while (win!=1 && exit!=1){
                     }
                 }
                 else if (ammount=='2'){
-                    if ((Pieces[10][0]==Pieces[npiece][0]+1&&Pieces[npiece][0]+2==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]+1&&Pieces[npiece][0]+2==Pieces[10][0])){
+                    if (((Pieces[10][0]==Pieces[npiece][0]+1&&Pieces[npiece][0]+2==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]+1&&Pieces[npiece][0]+2==Pieces[10][0]))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[npiece][4]==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]&&Pieces[npiece][4]==Pieces[10][4]))){
                         if (Pieces[10][0]<Pieces[11][0]){
                             Pieces[11][0]-=2;
                             Pieces[npiece][0]+=2;
@@ -199,7 +199,7 @@ while (win!=1 && exit!=1){
                     }
                 }
                 else if (ammount=='2'){
-                    if ((Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[npiece][0]-2==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]-1&&Pieces[npiece][0]-2==Pieces[10][0])){
+                    if (((Pieces[10][0]==Pieces[npiece][0]-1&&Pieces[npiece][0]-2==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]-1&&Pieces[npiece][0]-2==Pieces[10][0]))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[npiece][4]==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]&&Pieces[npiece][4]==Pieces[10][4]))){
                         if (Pieces[10][0]>Pieces[11][0]){
                             Pieces[11][0]+=2;
                             Pieces[npiece][0]-=2;
@@ -233,7 +233,7 @@ while (win!=1 && exit!=1){
                     }
                 }   
                 else if (ammount=='2'){
-                    if ((Pieces[10][4]==Pieces[npiece][4]-2&&Pieces[npiece][5]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-2&&Pieces[npiece][5]-2==Pieces[10][4])){
+                    if (((Pieces[10][4]==Pieces[npiece][4]-2&&Pieces[npiece][5]-2==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]-2&&Pieces[npiece][5]-2==Pieces[10][4]))&&((Pieces[10][0]==Pieces[npiece][0]&&Pieces[npiece][0]==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]&&Pieces[npiece][0]==Pieces[10][0]))){
                         if (Pieces[10][4]>Pieces[11][4]){
                             Pieces[11][4]+=2;
                             Pieces[10][4]+=2;
@@ -269,7 +269,7 @@ while (win!=1 && exit!=1){
                     }
                 }
                 else if (ammount=='2'){
-                    if ((Pieces[10][4]==Pieces[npiece][4]+2 && Pieces[11][4]==Pieces[npiece][5]+2)||(Pieces[11][4]==Pieces[npiece][4]+2 && Pieces[10][4]==Pieces[npiece][5]+2)){
+                    if (((Pieces[10][4]==Pieces[npiece][4]+2 && Pieces[11][4]==Pieces[npiece][5]+2)||(Pieces[11][4]==Pieces[npiece][4]+2 && Pieces[10][4]==Pieces[npiece][5]+2))&&((Pieces[10][0]==Pieces[npiece][0]&&Pieces[npiece][0]==Pieces[11][0])||(Pieces[11][0]==Pieces[npiece][0]&&Pieces[npiece][0]==Pieces[10][0]))){
                         if (Pieces[10][4]<Pieces[11][4]){                            
                             Pieces[11][4]-=2;
                             Pieces[10][4]-=2;
@@ -371,7 +371,7 @@ while (win!=1 && exit!=1){
                     }
                 }
                 else if (ammount=='2'){
-                    if ((Pieces[10][0]==Pieces[npiece][0]+2 && Pieces[11][0]==Pieces[npiece][1]+2)||(Pieces[11][0]==Pieces[npiece][0]+2 && Pieces[10][0]==Pieces[npiece][1]+2)){
+                    if (((Pieces[10][0]==Pieces[npiece][0]+2 && Pieces[11][0]==Pieces[npiece][1]+2)||(Pieces[11][0]==Pieces[npiece][0]+2 && Pieces[10][0]==Pieces[npiece][1]+2))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[npiece][4]==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]&&Pieces[npiece][4]==Pieces[10][4]))){
                         if (Pieces[10][0]<Pieces[11][0]){                            
                             Pieces[11][0]-=2;
                             Pieces[10][0]-=2;
@@ -407,7 +407,7 @@ while (win!=1 && exit!=1){
                     }
                 }
                 else if (ammount=='2'){
-                    if ((Pieces[10][0]==Pieces[npiece][0]-2 && Pieces[11][0]==Pieces[npiece][1]-2)||(Pieces[11][0]==Pieces[npiece][0]-2 && Pieces[10][0]==Pieces[npiece][1]-2)){
+                    if (((Pieces[10][0]==Pieces[npiece][0]-2 && Pieces[11][0]==Pieces[npiece][1]-2)||(Pieces[11][0]==Pieces[npiece][0]-2 && Pieces[10][0]==Pieces[npiece][1]-2))&&((Pieces[10][4]==Pieces[npiece][4]&&Pieces[npiece][4]==Pieces[11][4])||(Pieces[11][4]==Pieces[npiece][4]&&Pieces[npiece][4]==Pieces[10][4]))){
                         if (Pieces[10][0]<Pieces[11][0]){                            
                             Pieces[11][0]+=2;
                             Pieces[10][0]+=2;
