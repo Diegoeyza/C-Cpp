@@ -14,7 +14,7 @@ Cycles:
 Files:
 -fopen("filename","key") : la key puede ser r (leer), w (sobreescribir), a (append), w+(se le suma leer) y a+(lo mismo)
 -fclose(file)
--fgets(variable,buffer,archivo)
+-fgets(variable,buffer,archivo o stdin)
 -feof() : revisa si el archivo que estoy leyendo se terminó, puedo hacer un while (!feof(file)) para leer el archivo hasta su última línea y de ahí detener el while
 -rewind(file) : resetea la lectura al comienzo
 -fseek(file,cantidad de caracteres a avanzar,key) : la key puede ser SEEK_CUR que avanza desde donde quedé o SEEK_SET que avanza desde el inicio
