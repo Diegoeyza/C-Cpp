@@ -27,3 +27,8 @@ Files:
 -fprintf(file, "formatting", entry)
 -fputs(*string,file) :similar a fprintf, pero no formatea el string para su posterior output
 - *a crea el pointer llamado a, al llamar a a solo, llamo al pointer, al llamar &a, llamo el pointer del pointer *a y al llamar *a llamo el valor
+
+qsort: int comparator(const void* p1, const void* p2);
+( <0 ): Less than zero, if the element pointed by p1 goes before the element pointed by p2.
+( 0 ): Zero, if the element pointed by p1 is equivalent to the element pointed by p2.
+( >0 ): Greater than zero, if the element pointed by p1 goes after the element pointed by p2.

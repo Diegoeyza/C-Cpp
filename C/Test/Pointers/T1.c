@@ -2,10 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-void rate(int *list){
-    char rat[11];
-    fgets(rat,10,stdin);
-    list[0]=atoi(rat);
+void compare(const void * a, const void * b){
+    char *s1=*(char **)a;
+    char *s2=*(char **)b;
 
 
     
