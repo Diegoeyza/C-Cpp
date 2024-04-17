@@ -9,14 +9,21 @@ Cycles:
 }
 -for (int i=0, i<k, i++){} (puede usar continue o break)
 
+typedef struct operacion {
+	char operador;
+	func funcion;
+} oper;
+oper es el nombre con el que voy a llamar a la struct
+
 
 
 Files:
 -fopen("filename","key") : la key puede ser r (leer), w (sobreescribir), a (append), w+(se le suma leer) y a+(lo mismo)
 -fclose(file)
--fgets(variable,buffer,archivo o stdin)
+-fgets(variable,buffer,archivo o stdin) --> puedo convertir a int con stdlib.h y la funcion atoi(variable)
 -feof() : revisa si el archivo que estoy leyendo se terminó, puedo hacer un while (!feof(file)) para leer el archivo hasta su última línea y de ahí detener el while
 -rewind(file) : resetea la lectura al comienzo
 -fseek(file,cantidad de caracteres a avanzar,key) : la key puede ser SEEK_CUR que avanza desde donde quedé o SEEK_SET que avanza desde el inicio
 -fprintf(file, "formatting", entry)
 -fputs(*string,file) :similar a fprintf, pero no formatea el string para su posterior output
+- *a crea el pointer llamado a, al llamar a a solo, llamo al pointer, al llamar &a, llamo el pointer del pointer *a y al llamar *a llamo el valor
