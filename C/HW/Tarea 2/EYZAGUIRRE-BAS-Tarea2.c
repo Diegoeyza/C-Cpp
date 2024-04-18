@@ -11,9 +11,6 @@ int main ()
     else
     {
         FILE *file = fopen( argv[1], "r" );*/
-        //char filename[100];
-        //printf("Enter the file name: \n"); 
-        //scanf("%s", filename);
         FILE * file=fopen("bd_chica.csv","r");
 
         if ( file == 0 )
