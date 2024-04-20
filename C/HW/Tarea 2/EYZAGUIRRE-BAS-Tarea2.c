@@ -1,17 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define CITY 190 //el nombre real de bangkok
+#define COUNTRY 58 //UK
 
 typedef struct data {
-	    int **ID;
-        char ***Name;
-        int **Country_Code;
-        char ***Country_Name;
-        int **Population;
-        int **Elevation;
-        int **Timezone;
-        int **Coordinates;
+	    int ID;
+        int Geoname_ID;
+        char Name[CITY];
+        char Country_Code[3];
+        char Country_Name[COUNTRY];
+        int Population;
+        int Elevation;
+        char Timezone[100];
+        char Coordinates[40];
 	} city;
+
+void distribute(char **info, city *Database,int row){
+    int column=0;
+    while (info) {
+        switch (column){
+            case 0: Database->ID = atoi(info); break;
+            case 1: printf("Geoname ID: "); break;
+            case 2: printf("City: "); break;
+            case 3: printf("Country Code: "); break;
+            case 4: printf("Countryname: "); break;
+            case 5: printf("Population: "); break;
+            case 6: printf("Elevation: "); break;
+            case 7: printf("Timezone: "); break;
+            case 8: printf("Coordinates: "); break;
+        }
+        info = strtok(NULL, ";");
+        column++;
+
+}
+}
 
 int main ()
 {
@@ -23,7 +46,7 @@ int main ()
     {
         FILE *file = fopen( argv[1], "r" );*/
         FILE * file=fopen("bd_chica.csv","r");
-    city Database;
+    city *Database = (city *)malloc(1000 * sizeof(city));
 
 
         if ( file == 0 )
@@ -37,7 +60,7 @@ int main ()
         while (fgets(storage,512, file)) {
             column = 0;
             row++;
-            if (row == 1) continue;
+            if (row == 1) continue;     //me salto la primera línea
             char* info = strtok(storage, ";");
             while (info) {
                 switch (column){
@@ -58,6 +81,7 @@ int main ()
             }
             printf("\n");
         }
+        free(Database);
  
         fclose(file);
     }
