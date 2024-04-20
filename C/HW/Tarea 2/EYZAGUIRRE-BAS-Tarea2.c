@@ -22,10 +22,6 @@ int main ()
     else
     {
         FILE *file = fopen( argv[1], "r" );*/
-        //char filename[100];
-        //printf("Enter the file name: \n"); 
-        //scanf("%s", filename);
-        //Name;Country_Code;Country_name;Population;Elevation;Timezone;Coordinates
         FILE * file=fopen("bd_chica.csv","r");
     city Database;
 
