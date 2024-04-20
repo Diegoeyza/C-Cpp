@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct data {
+	    int **ID;
+        char ***Name;
+        int **Country_Code;
+        char ***Country_Name;
+        int **Population;
+        int **Elevation;
+        int **Timezone;
+        int **Coordinates;
+	} city;
+
 int main ()
 {
     /*if ( argc != 2 ) 
@@ -14,7 +25,10 @@ int main ()
         //char filename[100];
         //printf("Enter the file name: \n"); 
         //scanf("%s", filename);
+        //Name;Country_Code;Country_name;Population;Elevation;Timezone;Coordinates
         FILE * file=fopen("bd_chica.csv","r");
+    city Database;
+
 
         if ( file == 0 )
         {
@@ -31,7 +45,6 @@ int main ()
             char* info = strtok(storage, ";");
             while (info) {
                 switch (column){
-                    case 0: break;
                     case 1: printf("Geoname ID: "); break;
                     case 2: printf("City: "); break;
                     case 3: printf("Country Code: "); break;
