@@ -47,6 +47,15 @@ void distribute(char *info, city *Database){
     }
 }
 
+int Alphabetical(const void *a,const void *b){
+    const city *cityA=(const city *)a;
+    const city *cityB=(const city *)b;
+    if (cityB->Name[0]<cityA->Name[0]) return 1;                                                                                //comparo la primera letra de ambos
+    else if ((cityB->Name[0]==cityA->Name[0])&&(cityB->Name[1]<cityA->Name[1])) return 1;                                       //comparo la segunda letra de ambos
+    else if ((cityB->Name[0]==cityA->Name[0])&&(cityB->Name[1]==cityA->Name[1])&&(cityB->Name[2]<cityA->Name[2])) return 1;     //comparo la tercera letra de ambos
+    else return 0;
+}
+
 int Population(const void *a, const void *b) {
     const city *cityA = (const city *)a;
     const city *cityB = (const city *)b;
@@ -110,7 +119,7 @@ int main(int argc, char **argv) {
         int k;
         row=row-1;
         while (1) {
-            printf("Ingrese lo que desea consultar de la base de datos ([K] siendo la posición)\n(POBL [K], ELEV [K], LAT [K], [ciudad], SALIR): ");
+            printf("Ingrese lo que desea consultar de la base de datos (para consultar comandos escriba COMANDOS)\n(POBL [K], ELEV [K], LAT [K], ALPH [K], ciudad, SALIR): ");
             fgets(entry, sizeof(entry), stdin);
         
             if (!strncmp(entry, "POBL", 4)||!strncmp(entry, "pobl", 4)) {
@@ -135,6 +144,16 @@ int main(int argc, char **argv) {
                 if (k > 0)  printf("La %dª ciudad más al norte es: %s\n\n", k, Database[k - 1].Name);
                 else if (k < 0) printf("La %dª ciudad más al sur es: %s\n\n", -k, Database[row + k].Name);
             }
+            else if (strncmp(entry, "ALPH", 4) == 0) {
+                sscanf(entry, "ALPH %d", &k);
+                qsort(Database, row, sizeof(city), Alphabetical);
+                if (k > 0)
+                    printf("La %dª ciudad por orden alfabético es es: %s\n\n", k, Database[k - 1].Name);
+                else if (k < 0)
+                    printf("La %dª ciudad por orden alfabétido (de atrás hacia delante) es: %s\n\n", -k, Database[row + k].Name);
+            }
+            //Lista de comandos
+            else if ((strncmp(entry, "COMANDOS", 8) == 0)||(strncmp(entry, "comandos", 8) == 0)) printf("\n[K] es un entero, si se ingresa un -, se considera que es invertido el orden\n- POBL [k]: Busco la ciudad con la K-esima población más alta\n- ELEV [k]: Busco la ciudad con la K-esima elevación más alta\n- LAT [k]: Busco la ciudad con la K-esima latitud más alta\n- ALPH [k]: Busco la ciudad con la K-esima población alfabética (si hay una sin nombre esta será la primera)\n- ciudad: Busco la ciudad en cuestión y doy sus datos\n\n");
             else if ((strncmp(entry, "SALIR", 5) == 0)||(strncmp(entry, "salir", 5) == 0)) break;
             else {
             // Buscar la ciudad por nombre
