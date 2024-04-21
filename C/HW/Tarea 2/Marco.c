@@ -106,7 +106,7 @@ int comparar_latitud(const void *a, const void *b) {
 
 
 int main(int argc, char **argv) {
-    FILE *entrada = fopen("bd_final.csv", "r");
+    FILE *entrada = fopen("bd_chica.csv", "r");
     char linea[TAMANO_LINEA];
 
     if (entrada == NULL) {
