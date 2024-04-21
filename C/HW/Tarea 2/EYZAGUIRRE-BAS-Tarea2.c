@@ -4,18 +4,15 @@
 #define CITY 190 //el nombre real de bangkok
 #define COUNTRY 58 //UK
 
-char* nstrtok(char *string, const char *delimeter)
-{
-  static char *start = NULL;
-  char *token = NULL; 
-  if (string) start = string;               //asigno la dirección de memoria del string a utilizar a la variable en la función
-  if (start){                               //verifico si esque hay un string que dividir o si es null
-    token = start;
-    start = strpbrk(start, delimeter);      //divido el string con el delimeter
-    if (start) *start++ = '\0';             //agrego un carácter de término al final del string (\0)
-    return token;}                          //retorno el pointer a la lista de strings
-  else if (!start) return NULL;             //retorno null si esque no hay un string
-}
+char* nstrtok(char *string, const char *delimeter){
+    static char *start = NULL;
+    char *token = NULL; 
+    if (string) start = string;               //asigno la dirección de memoria del string a utilizar a la variable en la función
+    if (!start) return NULL;                  //retorno null si esque no hay un string
+    token = start;                            //verifico si esque hay un string que dividir o si es null
+    start = strpbrk(start, delimeter);        //divido el string con el delimeter
+    if (start) *start++ = '\0';               //agrego un carácter de término al final del string (\0)
+    return token;}                            //retorno el pointer a la lista de strings
 //Función complementaria a strtok, porque strtok tiene problemas al trabajar con entradas vacías de bases de datos (idea modificada de stack overflow)
 
 
@@ -85,18 +82,16 @@ int Latitude(const void *a, const void *b) {
 }
 
 int main(int argc, char **argv) {
-    /*if (argc == 1){
+    if (argc == 1){
         printf("\nNo se ha entregado el nombre de un archivo\n");
         return 0;}
     
-    FILE * file=fopen(*argv,"r");  */
-    FILE * file=fopen("bd_chica.csv","r");
+    FILE * file=fopen(argv[1],"r");  
 
     if (file==0) printf( "No se ha podido abrir el archivo\n" );
     else{
         char storage[512];
         int row = 0;
-        int column = 0;
         int frow=1;
         while(fgets(storage,500,file)){
             frow++;
@@ -105,7 +100,6 @@ int main(int argc, char **argv) {
         rewind(file);
         city *Database = (city *)malloc(frow*sizeof(city));
         while (fgets(storage,512, file)) {
-            column = 0;
             row++;
             if (row == 1) continue;     //me salto la primera línea
             char* info = nstrtok(storage, ";");

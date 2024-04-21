@@ -28,6 +28,16 @@ Files:
 -fputs(*string,file) :similar a fprintf, pero no formatea el string para su posterior output
 - *a crea el pointer llamado a, al llamar a a solo, llamo al pointer, al llamar &a, llamo el pointer del pointer *a y al llamar *a llamo el valor
 
+files con argv
+int main(int argc, char **argv) {
+    if (argc == 1){
+        printf("\nNo se ha entregado el nombre de un archivo\n");
+        return 0;}
+    
+    FILE * file=fopen(argv[1],"r");  
+	return 0;
+}
+
 qsort: int comparator(const void* p1, const void* p2);
 ( <0 ): Less than zero, if the element pointed by p1 goes before the element pointed by p2.
 ( 0 ): Zero, if the element pointed by p1 is equivalent to the element pointed by p2.
