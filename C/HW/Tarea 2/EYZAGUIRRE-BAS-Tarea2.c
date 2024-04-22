@@ -102,7 +102,7 @@ int main(int argc, char **argv) {
         char storage[512];
         int row = 0;
         int frow=1;
-        while(fgets(storage,500,file)){
+        while(fgets(storage,512,file)){
             frow++;
         }
         printf("Se registraron %d ciudades\n", frow-2);
@@ -119,7 +119,7 @@ int main(int argc, char **argv) {
         int k;
         row=row-1;
         while (1) {
-            printf("Ingrese lo que desea consultar de la base de datos (para consultar comandos escriba COMANDOS)\n(POBL [K], ELEV [K], LAT [K], ALPH [K], ciudad, SALIR): ");
+            printf("Ingrese lo que desea consultar de la base de datos (para consultar comandos escriba COMANDOS)\n(POBL [K], ELEV [K], LAT [K], ALPH [K], [ciudad], SALIR): ");
             fgets(entry, sizeof(entry), stdin);
         
             if (!strncmp(entry, "POBL", 4)||!strncmp(entry, "pobl", 4)) {
