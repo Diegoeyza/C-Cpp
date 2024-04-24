@@ -106,7 +106,7 @@ int main(int argc, char **argv) {
             frow++;
         }
         if (frow<=2){
-            printf("El archivo entregado está vacío");
+            printf("El archivo entregado está vacío\n");
             return 0;}
         printf("Se registraron %d ciudades\n", frow-2);
         rewind(file);
