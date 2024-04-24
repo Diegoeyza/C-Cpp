@@ -105,6 +105,9 @@ int main(int argc, char **argv) {
         while(fgets(storage,512,file)){
             frow++;
         }
+        if (frow<=2){
+            printf("El archivo entregado está vacío");
+            return 0;}
         printf("Se registraron %d ciudades\n", frow-2);
         rewind(file);
         city *Database = (city *)malloc(frow*sizeof(city));
