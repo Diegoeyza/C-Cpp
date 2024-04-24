@@ -119,7 +119,7 @@ int main(int argc, char **argv) {
         int k;
         row=row-1;
         while (1) {
-            printf("Ingrese lo que desea consultar de la base de datos (para consultar comandos escriba COMANDOS)\n(POBL [K], ELEV [K], LAT [K], ALPH [K], ciudad, SALIR): ");
+            printf("Ingrese lo que desea consultar de la base de datos (para consultar comandos escriba COMANDOS)\n(POBL [K], ELEV [K], LAT [K], ALPH [K], [ciudad], SALIR): ");
             fgets(entry, sizeof(entry), stdin);
         
             if (!strncmp(entry, "POBL", 4)||!strncmp(entry, "pobl", 4)) {
