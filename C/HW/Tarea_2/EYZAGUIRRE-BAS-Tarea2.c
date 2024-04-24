@@ -119,38 +119,42 @@ int main(int argc, char **argv) {
         int k;
         row=row-1;
         while (1) {
-            printf("Ingrese lo que desea consultar de la base de datos (para consultar comandos escriba COMANDOS)\n(POBL [K], ELEV [K], LAT [K], ALPH [K], [ciudad], SALIR): ");
+            printf("Ingrese lo que desea consultar de la base de datos (para consultar comandos escriba COMANDOS)\n(POBL [K], ELEV [K], LAT [K], ALPH [K], ciudad, SALIR): ");
             fgets(entry, sizeof(entry), stdin);
         
             if (!strncmp(entry, "POBL", 4)||!strncmp(entry, "pobl", 4)) {
                 sscanf(entry, "POBL %d", &k);
                 qsort(Database, row, sizeof(city), Population);
-                if (k > 0)
+                if (k > 0 && k <= row)
                     printf("La %dª ciudad por población es: %s, Población: %d\n\n", k, Database[k - 1].Name, Database[k - 1].Population);
-                else if (k < 0)
+                else if (k < 0&& k >= -row)
                     printf("La %dª ciudad por población (de menor población) es: %s, Población: %d\n\n", -k, Database[row + k].Name, Database[row + k].Population);
+                else printf("El K ingresado está fuera del rango de la base de datos de tamaño %d\n\n",row);
             }
             else if (strncmp(entry, "ELEV", 4) == 0) {
                 sscanf(entry, "ELEV %d", &k);
                 qsort(Database, row, sizeof(city), Elevation);
-                if (k > 0)
+                if (k > 0 && k <= row)
                     printf("La %dª ciudad por elevación es: %s, Elevación: %d\n\n", k, Database[k - 1].Name, Database[k - 1].Elevation);
-                else if (k < 0)
+                else if (k < 0&& k >= -row)
                     printf("La %dª ciudad por elevación (de menor elevación) es: %s, Elevación: %d\n\n", -k, Database[row + k].Name, Database[row + k].Elevation);
+                else printf("El K ingresado está fuera del rango de la base de datos de tamaño %d\n\n",row);
             } 
             else if (strncmp(entry, "LAT", 3) == 0) {
                 sscanf(entry, "LAT %d", &k);
                 qsort(Database, row, sizeof(city), Latitude);
-                if (k > 0)  printf("La %dª ciudad más al norte es: %s\n\n", k, Database[k - 1].Name);
-                else if (k < 0) printf("La %dª ciudad más al sur es: %s\n\n", -k, Database[row + k].Name);
+                if (k > 0 && k <= row)  printf("La %dª ciudad más al norte es: %s\n\n", k, Database[k - 1].Name);
+                else if (k < 0&& k >= -row) printf("La %dª ciudad más al sur es: %s\n\n", -k, Database[row + k].Name);
+                else printf("El K ingresado está fuera del rango de la base de datos de tamaño %d\n\n",row);
             }
             else if (strncmp(entry, "ALPH", 4) == 0) {
                 sscanf(entry, "ALPH %d", &k);
                 qsort(Database, row, sizeof(city), Alphabetical);
-                if (k > 0)
+                if (k > 0 && k <= row)
                     printf("La %dª ciudad por orden alfabético es es: %s\n\n", k, Database[k - 1].Name);
-                else if (k < 0)
+                else if (k < 0&& k >= -row)
                     printf("La %dª ciudad por orden alfabétido (de atrás hacia delante) es: %s\n\n", -k, Database[row + k].Name);
+                else printf("El K ingresado está fuera del rango de la base de datos de tamaño %d\n\n",row);
             }
             //Lista de comandos
             else if ((strncmp(entry, "COMANDOS", 8) == 0)||(strncmp(entry, "comandos", 8) == 0)) printf("\n[K] es un entero, si se ingresa un -, se considera que es invertido el orden\n- POBL [k]: Busco la ciudad con la K-esima población más alta\n- ELEV [k]: Busco la ciudad con la K-esima elevación más alta\n- LAT [k]: Busco la ciudad con la K-esima latitud más alta\n- ALPH [k]: Busco la ciudad con la K-esima población alfabética (si hay una sin nombre esta será la primera)\n- ciudad: Busco la ciudad en cuestión y doy sus datos\n\n");
@@ -184,5 +188,3 @@ int main(int argc, char **argv) {
     }
     return 0;
 }
-
-
