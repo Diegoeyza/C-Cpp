@@ -1,0 +1,41 @@
+Los vectores me permiten crear listas mutables, funcionan así:
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+std::vector <std::string> names;
+
+//add elements to the vector by using .push_back()
+names.push_back("Dionysia");
+names.push_back("Dimitra");
+names.push_back("George");
+
+//check the size
+std::cout << names.size() << std::endl; //outputs 3
+
+//remove the last element
+names.pop_back();
+}
+
+clases: Puedo crear una instancia de la clase antes del ; final
+
+#include <iostream> 
+using namespace std; 
+
+class Demo{ 
+    public: 
+    int a, b; 
+    Demo() 
+    { 
+        cout << "Default Constructor" << endl; 
+    } 
+    Demo(int a, int b):a(a),b(b) 
+    { 
+        cout << "parameterized Constructor values-" << a << " "<< b << endl; 
+    }    
+}instance(100,200); 
+  
+int main() { 
+    return 0; 
+}
