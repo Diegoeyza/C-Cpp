@@ -9,8 +9,11 @@ class Bus {
     vector<int> passengers;
 public:
     int id;
+    int distance=0;
+    void step();
     int pnumber();
-	bool arrival();
+    bool stationary=false;
+	void arrival(bool condition);
     void load();
 };
 

@@ -6,6 +6,9 @@ using namespace std;
 class Stop {
 public:
     int id;
-	bool arrival();
+	void arrival();
     int people=0;
+    int position;
 };
+
+int random_360();

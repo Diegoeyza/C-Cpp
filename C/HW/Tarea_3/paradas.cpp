@@ -1,10 +1,15 @@
 #include<iostream>
+#include <cstdlib>
 #include<string>
+#include "paradas.h"
 using namespace std;
 
-class stop {
-public:
-    int id;
-	bool arrival();
-    int people=0;
-};
+int random_360() {
+    return rand() % 360 + 1;
+    }
+
+void Stop::arrival(){
+    int condition=0;
+    condition=(random_360());
+    if (condition<=10) people++;
+}

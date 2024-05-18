@@ -1,7 +1,7 @@
 CC=g++
 EXE=programa
 FLAGS=-Werror -Wundef -Wall
-MAIN=T1
+MAIN=T2
 FILE1=
 FILE2=
 AUX_EXTENSION=
@@ -18,6 +18,9 @@ $(EXE): $(FILE1)$(AUX_EXTENSION) $(MAIN).o
 # $< se reemplaza automáticamente por la primera dependencia
 %.o: %.cpp
 	$(CC) $(FLAGS) -c $< -o $@
+
+run:
+	./$(EXE)
 
 clean:
 	rm -f *.o $(EXE)	
