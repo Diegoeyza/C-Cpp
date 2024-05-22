@@ -1,7 +1,7 @@
 CC=g++
 EXE=programa
 FLAGS=-Werror -Wundef -Wall
-MAIN=T2
+MAIN=T3
 FILE1=
 FILE2=
 AUX_EXTENSION=
