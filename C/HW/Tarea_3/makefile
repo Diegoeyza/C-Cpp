@@ -15,5 +15,7 @@ $(EXE): $(FILE1) $(FILE2) $(MAIN)
 run:
 	./$(EXE)
 
+again: clean $(EXE)
+
 clean:
 	rm -f *.o $(EXE)	
