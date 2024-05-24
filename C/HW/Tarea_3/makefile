@@ -12,7 +12,7 @@ $(EXE): $(FILE1) $(FILE2) $(MAIN)
 %.o: %.cpp
 	$(CC) $(FLAGS) -c $< -o $@
 
-run:
+run: $(EXE)
 	./$(EXE)
 
 again: clean $(EXE)
