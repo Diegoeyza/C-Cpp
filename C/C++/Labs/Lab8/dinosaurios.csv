@@ -1,0 +1,11 @@
+nombre,altura,esCarnivoro,periodo,tipo,sonido,informacionAdicional
+Rex,3.6,True,Cretacico,Tyrannosaurus,Roar,El Tyrannosaurus rex podia llegar a pesar hasta 9 toneladas.
+Trike,2.9,False,Cretacico,Triceratops,Grunt,El Triceratops tenia tres cuernos y un gran volante oseo.
+Veloci,1.8,True,Cretacico,Velociraptor,Screech,El Velociraptor era conocido por su velocidad y agilidad.
+Stego,3.5,False,Jurasico,Stegosaurus,Growl,El Stegosaurus tenia placas oseas a lo largo de su espalda.
+Bronto,4.8,False,Jurasico,Brachiosaurus,Hum,El Brachiosaurus tenia un cuello extremadamente largo.
+Spino,4.2,True,Cretacico,Spinosaurus,Roar,El Spinosaurus podia nadar y tenia una vela en su espalda.
+Ankylo,1.7,False,Cretacico,Ankylosaurus,Grunt,El Ankylosaurus estaba cubierto de placas oseas.
+Bary,2.5,True,Cretacico,Baryonyx,Roar,El Baryonyx tenia garras grandes y comia pescado.
+Dilo,1.5,True,Jurasico,Dilophosaurus,Hiss,El Dilophosaurus tenia dos crestas en su cabeza.
+Igua,3.0,False,Cretacico,Iguanodon,Call,El Iguanodon tenia un pulgar en forma de pico.
