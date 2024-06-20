@@ -5,98 +5,95 @@
 
 
 
-grafo:: grafo(int n): num_nodos(n), num_arcos(0), using_adj_list(true){
-  //constructor, inicializo con el numero de nodos y arcos en 0 
-  adj_list.resize(n, {0,0});
-  adj_matrix.resize(n, std::vector<bool>(n,false));
+grafo:: grafo(int n){
+  num_nodos=n;
+  num_arcos=0;
+  using_adj_list=true;
+  adj_list.resize(n, {0});
+  //adj_matrix.resize(n+1, std::vector<bool>(n+1,false));
 }
 
 
-void grafo::add_arco(int d, int h){
-  std::cout<<"adding"<<std::endl;
-  //Agrego arco de nodo d a nodo h
-  if(using_adj_list){
-    //Si uso lista de adyacencia agrego el arco
-    adj_list[num_arcos]={d,h};
-    //for ( auto i: adj_list) {for ( auto j: i){std::cout << j << ' ';}std::cout<<std::endl;}
-  } 
-  else {
+void grafo::add_arco(int d, int h) {
+  if (using_adj_list) {
+    adj_list[d - 1].push_back(h);
+  } else {
     adj_matrix[d-1][h-1] = true;
-    for ( auto i: adj_matrix) {for ( auto j: i){std::cout << j << ' ';}std::cout<<std::endl;}
   }
   num_arcos++;
-  if (num_arcos>= (num_nodos * std::log2(num_nodos))){
-    std::cout<<"switch"<<std::endl;
-    //si el numero de arcos es >= al numero de nodos por el logaritmo de 2 de los nodos, entonces cambio de representacion a lista de adyacencias
+  if (num_arcos >= (num_nodos * std::log2(num_nodos)) && using_adj_list) {
+    // si el numero de arcos es >= al numero de nodos por el logaritmo de 2 de
+    // los nodos, entonces cambio de representacion a lista de adyacencias
     switch_to_matrix();
   }
-    /*
-  else if(num_arcos <=((num_nodos * std::log2(num_nodos)))/2){
+  
+  else if(num_arcos <=((num_nodos * std::log2(num_nodos)))/2 && !using_adj_list){
     switch_to_list();
-  }*/
+  }
 }
 
 
 int grafo::add_nodo(){
-  //función agregar nodo, crea un nuevo nodo y lo agrega al final de la lista de nodos
   num_nodos++;
   if (using_adj_list){
-    //si uso lista de adyacencia agrego un nuevo nodo
     adj_list.resize(num_nodos);
   }
   else{
-    for (std::vector<bool>& row : adj_matrix){
-      //agrega una fila a la matriz llena de false en caso de que no use lista de adyacencias
+    for (std::vector<int>& row : adj_matrix){
       row.push_back(false);
     }
-    adj_matrix.push_back(std::vector<bool>(num_nodos, false));
-    //agrega una columna a la matriz llena de false
+    adj_matrix.push_back(std::vector<int>(num_nodos, 0));
+  }
+
+  if (num_arcos >= (num_nodos * std::log2(num_nodos)) && using_adj_list) {
+    switch_to_matrix();
+  }
+  
+  else if(num_arcos <=((num_nodos * std::log2(num_nodos)))/2 && !using_adj_list){
+    switch_to_list();
   }
   return num_nodos;
 }
 
 
 bool grafo:: hay_arco(int d, int h){
-  //función que verifica si hay arco entre nodos d y h
   if(using_adj_list){
-    //si uso lista de adyacencia verifico si el nodo h esta en la lista de adyaecencia del nodo d
-    for(int valor_de_la_lista : adj_list[d]){
-      //recorro la lista de adyacencia del nodo d asignando el valor a la variable valor_de_la_lista 
+    for(int valor_de_la_lista : adj_list[d-1]){
       if(valor_de_la_lista == h){
-        //si el valor de la lista interna es igual al nodo h entonces hay arco
         return true;
       }
     }
     return false;
   }
   else{
-    return adj_matrix[d][h];
+    return adj_matrix[d-1][h-1];
   }
 }
 
 
 void grafo::switch_to_matrix(){
-  //función que cambia de representación a matriz
-  adj_matrix.assign(num_nodos, std::vector<bool>(num_nodos, false));
+  adj_matrix.resize(num_nodos+1, std::vector<int>(num_nodos+1,0));
+  adj_matrix.assign(num_nodos, std::vector<int>(num_nodos, 0));
   for(long unsigned int i = 0; i< adj_list.size(); i++){
-    if (adj_list[i][0]!=0)
-    adj_matrix[adj_list[i][0]-1][adj_list[i][1]-1] = true;
+    for(long unsigned int j = 0; j< adj_list[i].size(); j++){
+    if (adj_list[i][j]!=0)
+    adj_matrix[i][adj_list[i][j]-1] = true;
+    }
   }
   adj_list.clear();
-  for ( auto i: adj_matrix) {for ( auto j: i){std::cout << j << ' ';}std::cout<<std::endl;}
   using_adj_list = false;
 }
 
 
 void grafo::switch_to_list(){
-  //función que cambia de representación a lista de adyaecencia
   adj_list.clear();
+  adj_list.resize(num_nodos);
   for(long unsigned int i = 0; i<adj_matrix.size(); i++){
     for(long unsigned int j=0; j<adj_matrix.size();j++)
       if(adj_matrix[i][j]){
         int x=i;
-        int y=j;
-        adj_list.push_back({x,y});
+        int y=j+1;
+        adj_list[x].push_back(y);
       }
     }
   adj_matrix.clear();
@@ -104,47 +101,42 @@ void grafo::switch_to_list(){
 }
 
 bool grafo::hay_camino(int a, int b){
+    std::vector<int> used_options={a};
+    std::vector<int> new_options={};
     std::vector<int> options={a};
-    bool condition=false;
     if (!using_adj_list){
       int row=1;
       int column=1;
-      for (long unsigned int counter=0; counter<adj_matrix[0].size();counter++){
-          row=1;
-          for (std::vector<bool> i: adj_matrix){
-              column=1;
-              for (int j:i){
-                  for (int op:options){
-                      //cout<<"row and op="<<row<<" "<<op<<" j="<<j<<" count= "<<(count(options.begin(), options.end(), row)==0)<<endl;
-                      if ((row==op && column==b)&&j==true) return true;
-                      else if (row==op && j==true && count(options.begin(), options.end(), column)==0) options.push_back(column);
-                  }
-                  column++;
-              }
-              row++;
-          }
-          //std::cout<<"size:\n->"<<options.size()<<std::endl;
+      while(options.size()!=0){
+        row=1;
+        for (std::vector<int> i: adj_matrix){
+            column=1;
+            for (int j:i){
+                for (int op:options){
+                    if ((row==op && column==b)&&j==true) return true;
+                    else if (row==op && j==true && count(used_options.begin(), used_options.end(), column)==0) new_options.push_back(column);
+                }
+                column++;
+            }
+            row++;
+        }
+        for (int i:options) if(count(used_options.begin(), used_options.end(), i)==0) used_options.push_back(i);
+        options=new_options;
+        new_options={};
       }
     }
     else {
-      int row=1;
-      int column=1;
-      for (long unsigned int counter=0; counter<adj_matrix[0].size();counter++){
-          row=1;
-          for (std::vector<bool> i: adj_matrix){
-              column=1;
-              for (int j:i){
-                  for (int op:options){
-                      //cout<<"row and op="<<row<<" "<<op<<" j="<<j<<" count= "<<(count(options.begin(), options.end(), row)==0)<<endl;
-                      if ((row==op && column==b)&&j==true) return true;
-                      else if (row==op && j==true && count(options.begin(), options.end(), column)==0) options.push_back(column);
-                  }
-                  column++;
-              }
-              row++;
+      while(options.size()!=0){
+        for (int op:options){
+          for (long unsigned int counter=0; counter<adj_list[op-1].size();counter++){
+            if (adj_list[op-1][counter]==b) return true;
+            else if (count(used_options.begin(), used_options.end(), adj_list[op-1][counter])==0) new_options.push_back(adj_list[op-1][counter]);
           }
-          //std::cout<<"size:\n->"<<options.size()<<std::endl;
+          for (int i:options) if(count(used_options.begin(), used_options.end(), i)==0) used_options.push_back(i);
+          options=new_options;
+          new_options={};
+        }
       }
     }
-    return condition;
+    return false;
 }

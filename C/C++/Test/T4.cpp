@@ -5,11 +5,13 @@
 using namespace std;
 
 bool check(std::vector<int>& num, std::vector<std::vector<int>>& matriz){
+    std::vector<int> used_options={num[0]};
+    std::vector<int> new_options={};
     std::vector<int> options={num[0]};
     bool condition=false;
     int row=1;
     int column=1;
-    for (long unsigned int i=0; i<matriz[0].size();i++){
+    while(options.size()!=0){
         row=1;
         for (std::vector<int> i: matriz){
             column=1;
@@ -17,13 +19,22 @@ bool check(std::vector<int>& num, std::vector<std::vector<int>>& matriz){
                 for (int op:options){
                     //cout<<"row and op="<<row<<" "<<op<<" j="<<j<<" count= "<<(count(options.begin(), options.end(), row)==0)<<endl;
                     if ((row==op && column==num[1])&&j==1) return true;
-                    else if (row==op && j==1 && count(options.begin(), options.end(), column)==0) options.push_back(column);
+                    else if (row==op && j==1 && count(used_options.begin(), used_options.end(), column)==0) {new_options.push_back(column);}
                 }
                 column++;
             }
             row++;
         }
-        //std::cout<<"size:\n->"<<options.size()<<std::endl;
+        for (int i:options) if(count(used_options.begin(), used_options.end(), i)==0) used_options.push_back(i);
+        options=new_options;
+        cout<<"used options= ";
+        for (int i:used_options) cout<<i<<",";
+        cout<<endl;
+
+        cout<<"options= ";
+        for (int i:options) cout<<i<<",";
+        cout<<endl;
+        new_options={};
     }
     return condition;
 }
