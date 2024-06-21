@@ -10,7 +10,6 @@ grafo:: grafo(int n){
   num_arcos=0;
   using_adj_list=true;
   adj_list.resize(n, {0});
-  //adj_matrix.resize(n+1, std::vector<bool>(n+1,false));
 }
 
 
@@ -22,8 +21,6 @@ void grafo::add_arco(int d, int h) {
   }
   num_arcos++;
   if (num_arcos >= (num_nodos * std::log2(num_nodos)) && using_adj_list) {
-    // si el numero de arcos es >= al numero de nodos por el logaritmo de 2 de
-    // los nodos, entonces cambio de representacion a lista de adyacencias
     switch_to_matrix();
   }
   

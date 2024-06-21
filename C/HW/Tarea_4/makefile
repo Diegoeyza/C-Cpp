@@ -1,19 +1,30 @@
 CC=g++
-flags=-std=c++11 -Wall -Wextra -Wundef -Werror -Wuninitialized -Winit-self
 exe=programa
+flags=-std=c++11 -Wall -Wextra -Wundef -Werror -Wuninitialized -Winit-self
+rutapython=/usr/include/python3.9
+libreria=_grafo.so
+
+libreria: $(libreria)
 
 $(exe): main.o grafo.o
-	$(CC) $(flags) main.o grafo.o -o $(exe)
-	./$(exe)
+	$(CC) -o $@ $^
+	
+$(libreria): lib_wrap.cxx grafo.o
+	$(CC) -fPIC -c lib_wrap.cxx -o lib_wrap.o -I$(rutapython)
+	$(CC) -shared lib_wrap.o grafo.o -o $(libreria) -lpython3.9
+	
+lib_wrap.cxx: lib.i grafo.h
+	swig -python -c++ lib.i
 
-grafo.o: grafo.cpp grafo.h
-	$(CC) $(flags) -c grafo.cpp -o grafo.o
+grafo.o: grafo.h grafo.cpp
+	$(CC) -fPIC -c -o grafo.o grafo.cpp
 
 main.o: main.cpp grafo.h
-	$(CC) $(flags) -c main.cpp -o main.o
-
-run: $(exe)
-	./$(exe)
-
+	$(CC) -c -o main.o main.cpp
+	
+%.o: %.cpp %.h
+	$(CC) -c -o $@ $<
+	
 clean:
-	rm -f *.o $(exe)
+	rm -f *.o $(exe) $(libreria) *.cxx grafo.py *.so
+	rm -r -f __pycache__
