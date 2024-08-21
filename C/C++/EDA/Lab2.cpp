@@ -2,11 +2,14 @@
 #include "sort/utils.hpp"
 #include <chrono>
 #include <iostream>
+#include <fstream>
 #include <ctime>
+#include <string>
+using namespace std;
 
 long getElapsedTime(std::chrono::time_point<std::chrono::high_resolution_clock> t1,
 		std::chrono::time_point<std::chrono::high_resolution_clock> t2){
-	auto int_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+	auto int_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1);
 	return static_cast<long>(int_ms.count());
 }
 
@@ -40,12 +43,32 @@ void testSort(int max_size, int n_sizes){
 
 int main(int nargs, char** args){
 
-	std::srand(std::time(nullptr));
-	int A[10]={1,2,3,4,5,6,7,8,9,10};
-	/*int n = 10;
-	float* A = sort::createRandomIntArray(n, 0, 100);
-	sort::printArray(A, n);
-	std::cout << sort::pair_order(A, n, 2);*/
+	string myText;
+
+	// Read from the text file
+	ifstream MyReadFile("ruts_100.txt");
+	int ruts[100];
+
+	// Use a while loop together with the getline() function to read the file line by line
+	int i = 0;
+	while (getline (MyReadFile, myText)) {
+	// Output the text from the file
+		ruts[i] = stoi(myText);
+		i++;
+	}
+
+	cout << "-------------------------------" << endl;
+
+	auto start = std::chrono::high_resolution_clock::now();
+	sort::quickSort(ruts, 100);
+	auto end = std::chrono::high_resolution_clock::now();
+	std::cout<<" Elapsed : " << getElapsedTime(start, end) << std::endl;
+	// for(int i=0; i< 100; i++){
+	// 	cout << ruts[i] << endl;
+	// }
+
+	// Close the file
+	MyReadFile.close();
 
 //	auto start = std::chrono::high_resolution_clock::now();
 //	sort::quickSort(A, n);
