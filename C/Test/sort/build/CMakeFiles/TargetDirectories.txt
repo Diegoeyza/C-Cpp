@@ -1,0 +1,3 @@
+/home/edauandes/eda/EDA_UA/eda_cpp-main/sort/build/CMakeFiles/test.dir
+/home/edauandes/eda/EDA_UA/eda_cpp-main/sort/build/CMakeFiles/edit_cache.dir
+/home/edauandes/eda/EDA_UA/eda_cpp-main/sort/build/CMakeFiles/rebuild_cache.dir
